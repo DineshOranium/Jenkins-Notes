@@ -1,0 +1,57 @@
+Here are the steps to create a simple EC2 instance using SSH command:
+
+Log in to the AWS Management Console.
+Navigate to the EC2 Dashboard.
+Click on "Launch Instance" button.
+Search the Amazon Machine Image (AMI) you want to use and click "Next".
+Centos Image on AWS t2.large 40 GB
+/ProComputers CentOS-7.9-x86_64-Minimal-8GiB-HVM-20220707_053634-20255663-8070-4ad8-85c6-4d4f796c9265
+
+Choose the instance type and click "Next". 
+t2.Medium
+
+Select an existing key pair or create a new one, then click "Launch Instances".
+Review the instance details and click "Launch".
+Once your instance is launched, you can connect to it using SSH command with the following steps:
+
+Open your terminal application.
+Navigate to the directory where your key pair file is stored.
+Use the following command to change the permission of the key pair file:
+chmod 400 my-key-pair.pem
+Use the following command to connect to your instance:
+ssh -i "my-key-pair.pem" ec2-user@your-instance-public-dns
+
+
+Command to install git:
+Syntax: yum install git
+	git --version
+-------------------------
+
+Jenkins Installation:
+sudo yum -y install java-11-openjdk
+curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo yum install jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Access Jenkins via browser : http://publicIP:8080
+
+Add the security group:-
+
+Select/check Ec2 instance, you will see the Secutity 
+Click the security group link
+Click on the "Edit inbound rules" button at the bottom of the "Inbound Rules" tab.
+Click on the "Add Rule" button.
+Select "HTTP" from the "Type" drop-down list.
+Leave the "Source" as "0.0.0.0/0" to allow access from any IP address.
+Click on the "Save Rules" button to add the HTTP rule to the security group.
+Click on the "Add Rule" button again.
+Select "Custom TCP Rule" from the "Type" drop-down list.
+Enter "8080" as the "Port Range".
+Leave the "Source" as "0.0.0.0/0" to allow access from any IP address.
+Click on the "Save Rules" button to add the 8080 rule to the security group.
+
+
+
